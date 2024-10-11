@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helm Chart Repository</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1, h2 {
+            color: #333;
+        }
+        pre {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Helm Chart Repository</h1>
+        
+        <h2>index.yaml Content</h2>
+        <pre><code id="yamlContent">Loading...</code></pre>
+
+        <h2>How to Use This Helm Chart</h2>
+        <p>To use this Helm chart, follow these steps:</p>
+        <ol>
+            <li>Add the repository to your Helm installation:
+                <pre><code>helm repo add myrepo https://bofen97.github.io/helm-repo</code></pre>
+            </li>
+            <li>Update your repositories:
+                <pre><code>helm repo update</code></pre>
+            </li>
+            <li>Install the chart:
+                <pre><code>helm install my-release myrepo/pineapple</code></pre>
+            </li>
+        </ol>
+        <p>Replace 'my-release' with your desired release name and 'pineapple' with the actual chart name from the index.yaml file.</p>
+    </div>
+
+    <script>
+        fetch('index.yaml')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('yamlContent').textContent = data;
+            })
+            .catch(error => {
+                console.error('Error fetching index.yaml:', error);
+                document.getElementById('yamlContent').textContent = 'Error loading index.yaml';
+            });
+    </script>
+</body>
+</html>
